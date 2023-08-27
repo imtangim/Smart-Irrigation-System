@@ -5,7 +5,7 @@ import 'package:flutter_details/screens/registerscreen.dart';
 import 'package:flutter_details/services/auth_service.dart';
 import 'package:flutter_details/services/mailchecker.dart';
 
-import 'landingpage.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
