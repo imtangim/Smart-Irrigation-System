@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_details/screens/Siginlandingpage.dart';
+import 'package:flutter_details/screens/landingpage.dart';
+import 'package:flutter_details/screens/statistic.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,9 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
       theme: ThemeData.dark(useMaterial3: true),
-      home: const SignInLandingPage(),
+      home: const Statistic(),
     );
   }
 }

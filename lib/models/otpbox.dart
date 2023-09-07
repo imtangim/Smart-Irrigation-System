@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -6,6 +7,8 @@ class OtpBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController otpNumber = TextEditingController();
+
     return Form(
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,6 +26,7 @@ class OtpBox extends StatelessWidget {
             ),
             child: TextField(
               onChanged: (value) {
+                otpNumber.text += value;
                 if (value.length == 1) {
                   FocusScope.of(context).nextFocus();
                 }
@@ -51,6 +55,7 @@ class OtpBox extends StatelessWidget {
             ),
             child: TextField(
               onChanged: (value) {
+                otpNumber.text += value;
                 if (value.length == 1) {
                   FocusScope.of(context).nextFocus();
                 }
@@ -79,6 +84,8 @@ class OtpBox extends StatelessWidget {
             ),
             child: TextField(
               onChanged: (value) {
+                otpNumber.text += value;
+
                 if (value.length == 1) {
                   FocusScope.of(context).nextFocus();
                 }
@@ -111,6 +118,7 @@ class OtpBox extends StatelessWidget {
             ),
             child: TextField(
               onChanged: (value) {
+                otpNumber.text += value;
                 if (value.length == 1) {
                   FocusScope.of(context).nextFocus();
                 }
@@ -139,6 +147,7 @@ class OtpBox extends StatelessWidget {
             ),
             child: TextField(
               onChanged: (value) {
+                otpNumber.text += value;
                 if (value.length == 1) {
                   FocusScope.of(context).nextFocus();
                 }
@@ -167,8 +176,12 @@ class OtpBox extends StatelessWidget {
             ),
             child: TextField(
               onChanged: (value) {
+                otpNumber.text += value;
                 if (value.length == 1) {
                   FocusScope.of(context).nextFocus();
+                }
+                if (kDebugMode) {
+                  print("OTP SO FAR:  ${otpNumber.text}");
                 }
               },
               style: Theme.of(context).textTheme.headlineLarge,

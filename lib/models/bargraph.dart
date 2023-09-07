@@ -2,7 +2,10 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class _BarChart extends StatefulWidget {
-  const _BarChart();
+  final dynamic n;
+  final dynamic p;
+  final dynamic k;
+  const _BarChart(this.n, this.p, this.k);
 
   @override
   State<_BarChart> createState() => _BarChartState();
@@ -141,7 +144,7 @@ class _BarChartState extends State<_BarChart> {
                 topLeft: Radius.circular(6),
                 topRight: Radius.circular(6),
               ),
-              toY: 190,
+              toY: widget.n,
               gradient: _barsGradient,
             )
           ],
@@ -156,7 +159,7 @@ class _BarChartState extends State<_BarChart> {
                 topLeft: Radius.circular(6),
                 topRight: Radius.circular(6),
               ),
-              toY: 120,
+              toY: widget.p,
               gradient: _barsGradient,
             )
           ],
@@ -171,7 +174,7 @@ class _BarChartState extends State<_BarChart> {
                 topLeft: Radius.circular(6),
                 topRight: Radius.circular(6),
               ),
-              toY: 255,
+              toY: widget.k,
               gradient: _barsGradient,
             )
           ],
@@ -181,7 +184,8 @@ class _BarChartState extends State<_BarChart> {
 }
 
 class BarChartSample3 extends StatefulWidget {
-  const BarChartSample3({super.key});
+  final dynamic n, p, k;
+  const BarChartSample3({super.key, this.n, this.p, this.k});
 
   @override
   State<StatefulWidget> createState() => BarChartSample3State();
@@ -190,11 +194,11 @@ class BarChartSample3 extends StatefulWidget {
 class BarChartSample3State extends State<BarChartSample3> {
   @override
   Widget build(BuildContext context) {
-    return const AspectRatio(
+    return AspectRatio(
       aspectRatio: 6.6,
       child: Padding(
-        padding: EdgeInsets.all(3.0),
-        child: _BarChart(),
+        padding: const EdgeInsets.all(3.0),
+        child: _BarChart(widget.n, widget.p, widget.k),
       ),
     );
   }

@@ -8,7 +8,7 @@ class SignUpLandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      // backgroundColor: Colors.blueGrey,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -58,10 +58,14 @@ class SignUpLandingPage extends StatelessWidget {
               children: [
                 Container(
                   width: 300,
-                  height: 60,
+                  height: 70,
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 49, 142, 13),
+                    // color: const Color.fromARGB(255, 49, 142, 13),
                     borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.white,
+                    ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -105,10 +109,13 @@ class SignUpLandingPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 Container(
                   width: 300,
-                  height: 60,
+                  height: 70,
                   decoration: BoxDecoration(
-                    color: Colors.amber,
                     borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.white,
+                    ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -117,7 +124,7 @@ class SignUpLandingPage extends StatelessWidget {
                       const Icon(
                         Icons.phone,
                         size: 35,
-                        color: Colors.deepOrangeAccent,
+                        color: Colors.white,
                       ),
                       const SizedBox(width: 20),
                       ElevatedButton(

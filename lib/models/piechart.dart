@@ -5,13 +5,14 @@ import 'package:flutter_details/models/indicator.dart';
 import 'package:gap/gap.dart';
 
 class PieChartSample2 extends StatefulWidget {
-  const PieChartSample2({super.key});
+  final dynamic n, p, k;
+  const PieChartSample2({super.key, this.n, this.p, this.k});
 
   @override
-  State<StatefulWidget> createState() => PieChart2State();
+  State<PieChartSample2> createState() => PieChart2State();
 }
 
-class PieChart2State extends State {
+class PieChart2State extends State<PieChartSample2> {
   int touchedIndex = -1;
 
   @override
@@ -44,7 +45,7 @@ class PieChart2State extends State {
                   ),
                   sectionsSpace: 0,
                   centerSpaceRadius: 40,
-                  sections: showingSections(),
+                  sections: showingSections(widget.n, widget.p, widget.k),
                 ),
               ),
             ),
@@ -85,7 +86,8 @@ class PieChart2State extends State {
     );
   }
 
-  List<PieChartSectionData> showingSections() {
+  List<PieChartSectionData> showingSections(double n, double p, double k) {
+    print("$n,$p,$k");
     return List.generate(3, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 25.0 : 16.0;
@@ -95,8 +97,8 @@ class PieChart2State extends State {
         case 0:
           return PieChartSectionData(
             color: Colors.blue,
-            value: 40,
-            title: '40%',
+            value: n == 0 ? 1 : (n / 255) * 100,
+            title: '${(n / 255) * 100}',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -108,8 +110,8 @@ class PieChart2State extends State {
         case 1:
           return PieChartSectionData(
             color: Colors.yellow,
-            value: 30,
-            title: '30%',
+            value: p == 0 ? 1 : (p / 255) * 100,
+            title: '${(p / 255) * 100}',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,
@@ -121,8 +123,8 @@ class PieChart2State extends State {
         case 2:
           return PieChartSectionData(
             color: Colors.purple,
-            value: 15,
-            title: '15%',
+            value: k == 0 ? 1 : (k / 255) * 100,
+            title: '${(k / 255) * 100}',
             radius: radius,
             titleStyle: TextStyle(
               fontSize: fontSize,

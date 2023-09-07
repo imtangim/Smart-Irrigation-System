@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_details/screens/loginscreen.dart';
+import 'package:flutter_details/screens/phoneentry.dart';
 import 'package:flutter_details/screens/signuplanding.dart';
 
 class SignInLandingPage extends StatelessWidget {
@@ -10,7 +11,7 @@ class SignInLandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      // backgroundColor: Colors.blueGrey,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -60,10 +61,14 @@ class SignInLandingPage extends StatelessWidget {
               children: [
                 Container(
                   width: 300,
-                  height: 60,
+                  height: 70,
                   decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 49, 142, 13),
+                    // color: const Color.fromARGB(255, 49, 142, 13),
                     borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.white,
+                    ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -96,7 +101,7 @@ class SignInLandingPage extends StatelessWidget {
                           "Login with Email",
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 20,
+                            fontSize: 17,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -107,10 +112,14 @@ class SignInLandingPage extends StatelessWidget {
                 const SizedBox(height: 20),
                 Container(
                   width: 300,
-                  height: 60,
+                  height: 70,
                   decoration: BoxDecoration(
-                    color: Colors.amber,
                     borderRadius: BorderRadius.circular(5),
+                    border: Border.all(
+                      width: 1,
+                      color: Colors.white,
+                      style: BorderStyle.solid,
+                    ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -119,7 +128,7 @@ class SignInLandingPage extends StatelessWidget {
                       const Icon(
                         Icons.phone,
                         size: 35,
-                        color: Colors.deepOrangeAccent,
+                        color: Colors.white,
                       ),
                       const SizedBox(width: 20),
                       ElevatedButton(
@@ -131,12 +140,19 @@ class SignInLandingPage extends StatelessWidget {
                           backgroundColor:
                               const Color.fromARGB(255, 255, 230, 141),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PhoneNoEntry(),
+                            ),
+                          );
+                        },
                         child: const Text(
                           "Login with Phone",
                           style: TextStyle(
                             color: Colors.black,
-                            fontSize: 20,
+                            fontSize: 17,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
