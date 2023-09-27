@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_details/screens/loginscreen.dart';
+
 
 class EmailVerification extends StatefulWidget {
   final int durationInMinutes;
@@ -61,12 +61,12 @@ class _EmailVerificationState extends State<EmailVerification> {
                   backgroundColor: const Color.fromARGB(255, 19, 85, 201),
                 ),
                 onPressed: () {
-                  Navigator.pop(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
-                    ),
-                  );
+                  // Navigator.pop(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => ,
+                  //   ),
+                  // );
                 },
                 child: const Text(
                   "Go to Login",

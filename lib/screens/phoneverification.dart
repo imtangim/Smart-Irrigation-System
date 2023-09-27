@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_details/models/otpbox.dart';
-import 'package:flutter_details/screens/registerScreen.dart';
+
 
 class OtpVerification extends StatefulWidget {
   final int durationInMinutes;
@@ -78,12 +78,12 @@ class _OtpVerificationState extends State<OtpVerification> {
                     Text(widget.phoneNumber),
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const RegisterScreen(),
-                          ),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) => const RegisterScreen(),
+                        //   ),
+                        // );
                       },
                       child: const Text(
                         "Change the phone number?",

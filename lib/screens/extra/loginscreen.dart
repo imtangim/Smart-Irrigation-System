@@ -1,20 +1,21 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_details/main.dart';
 import 'package:flutter_details/screens/bottombar.dart';
-import 'package:flutter_details/screens/registerscreen.dart';
+import 'package:flutter_details/screens/extra/registerscreen.dart';
 import 'package:flutter_details/services/auth_service.dart';
 import 'package:flutter_details/services/mailchecker.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
-
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool _validmail = true;
   bool _showPassword = false;
   TextEditingController emailControler = TextEditingController();
@@ -201,12 +202,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           side: MaterialStateProperty.all(BorderSide.none),
                         ),
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const RegisterScreen(),
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => const RegisterScreen(),
+                          //   ),
+                          // );
                         },
                         child: const Text(
                           "Create an account",
@@ -244,13 +245,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void signinuser() async {
     try {
-      dynamic result = await AuthService()
-          .signin(emailControler.text, passwordControler.text);
+      dynamic result = await AuthService().signin(
+        emailControler.text,
+        passwordControler.text,
+      );
 
       if (result != null) {
         passwordControler.clear();
         emailControler.clear();
         snackBar("Successful.");
+        ref.read(uidProvider.notifier).state = result.uid;
+        if (kDebugMode) {
+          print("The uid is : ${ref.watch(uidProvider)}");
+        }
         // ignore: use_build_context_synchronously
         Navigator.of(context).push(
           PageRouteBuilder(

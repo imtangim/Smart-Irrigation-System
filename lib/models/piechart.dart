@@ -1,4 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_details/models/indicator.dart';
@@ -87,7 +88,9 @@ class PieChart2State extends State<PieChartSample2> {
   }
 
   List<PieChartSectionData> showingSections(double n, double p, double k) {
-    print("$n,$p,$k");
+    if (kDebugMode) {
+      print("$n,$p,$k");
+    }
     return List.generate(3, (i) {
       final isTouched = i == touchedIndex;
       final fontSize = isTouched ? 25.0 : 16.0;

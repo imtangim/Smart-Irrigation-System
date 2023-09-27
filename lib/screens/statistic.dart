@@ -68,13 +68,19 @@ class _StatisticState extends State<Statistic> {
           };
         }
       } else {
-        print("Drop down empty.");
+        if (kDebugMode) {
+          print("Drop down empty.");
+        }
         Map<String, dynamic> apiValues = apiData.last;
-        print(apiValues);
+        if (kDebugMode) {
+          print(apiValues);
+        }
         return apiValues;
       }
     } else {
-      print("No matching object found.");
+      if (kDebugMode) {
+        print("No matching object found.");
+      }
       return {
         "nitrogen": 1.0,
         "phosphorus": 1.0,
@@ -191,6 +197,7 @@ class _StatisticState extends State<Statistic> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
+              
               child: CircularProgressIndicator(),
             );
           } else {
@@ -250,7 +257,9 @@ class _StatisticState extends State<Statistic> {
                                     dropdownValue += value!;
                                     matcher(dropdownValue);
                                   });
-                                  print("The value is $dropdownValue");
+                                  if (kDebugMode) {
+                                    print("The value is $dropdownValue");
+                                  }
                                 },
 
                                 items: timevalue.map((option) {

@@ -44,8 +44,10 @@ dependencies:
   fl_chart:
   intl:
   path_provider:
+  flutter_riverpod:
   flutter_localizations:
     sdk: flutter
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:

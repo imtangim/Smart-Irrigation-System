@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_details/screens/Siginlandingpage.dart';
-import 'package:flutter_details/screens/registerScreen.dart';
 
-class SignUpLandingPage extends StatelessWidget {
-  const SignUpLandingPage({super.key});
+import 'package:flutter_details/screens/phoneentry.dart';
+
+import 'phoneregistration.dart';
+
+class SignInPage extends StatelessWidget {
+  const SignInPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class SignUpLandingPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const Icon(
-                        Icons.email,
+                        Icons.phone,
                         color: Colors.white,
                         size: 40,
                       ),
@@ -90,12 +92,12 @@ class SignUpLandingPage extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const RegisterScreen(),
+                              builder: (context) => const PhoneNoEntry(),
                             ),
                           );
                         },
                         child: const Text(
-                          "Signup with Email",
+                          "Signin with Phone",
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 17,
@@ -136,7 +138,14 @@ class SignUpLandingPage extends StatelessWidget {
                           backgroundColor:
                               const Color.fromARGB(255, 255, 230, 141),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PhoneRegistration(),
+                            ),
+                          );
+                        },
                         child: const Text(
                           "Signup with Phone",
                           style: TextStyle(
@@ -149,45 +158,45 @@ class SignUpLandingPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      const Text("Have an account? "),
-                      TextButton(
-                        style: ButtonStyle(
-                          padding: MaterialStateProperty.all(EdgeInsets.zero),
-                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          animationDuration: const Duration(milliseconds: 0),
-                          overlayColor:
-                              MaterialStateProperty.all(Colors.transparent),
-                          textStyle:
-                              MaterialStateProperty.all(const TextStyle()),
-                          elevation: MaterialStateProperty.all(0),
-                          shadowColor:
-                              MaterialStateProperty.all(Colors.transparent),
-                          side: MaterialStateProperty.all(BorderSide.none),
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const SignInLandingPage(),
-                            ),
-                          );
-                        },
-                        child: const Text(
-                          "Login Here",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                )
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(vertical: 5.0),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.center,
+                //     crossAxisAlignment: CrossAxisAlignment.center,
+                //     children: [
+                //       const Text("Have an account? "),
+                //       TextButton(
+                //         style: ButtonStyle(
+                //           padding: MaterialStateProperty.all(EdgeInsets.zero),
+                //           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                //           animationDuration: const Duration(milliseconds: 0),
+                //           overlayColor:
+                //               MaterialStateProperty.all(Colors.transparent),
+                //           textStyle:
+                //               MaterialStateProperty.all(const TextStyle()),
+                //           elevation: MaterialStateProperty.all(0),
+                //           shadowColor:
+                //               MaterialStateProperty.all(Colors.transparent),
+                //           side: MaterialStateProperty.all(BorderSide.none),
+                //         ),
+                //         onPressed: () {
+                //           Navigator.push(
+                //             context,
+                //             MaterialPageRoute(
+                //               builder: (context) => const SignInLandingPage(),
+                //             ),
+                //           );
+                //         },
+                //         child: const Text(
+                //           "Login Here",
+                //           style: TextStyle(
+                //             fontWeight: FontWeight.w500,
+                //           ),
+                //         ),
+                //       )
+                //     ],
+                //   ),
+                // )
               ],
             ),
           ],

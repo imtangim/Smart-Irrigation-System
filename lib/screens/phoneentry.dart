@@ -1,11 +1,10 @@
 import 'package:country_flags/country_flags.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_details/models/otpbox.dart';
-import 'package:flutter_details/screens/bottombar.dart';
-import 'package:flutter_details/screens/registerscreen.dart';
-import 'package:flutter_details/services/auth_service.dart';
+
+import 'package:flutter_details/screens/phoneregistration.dart';
+
 import 'package:flutter_details/services/mailchecker.dart';
 import 'package:gap/gap.dart';
 
@@ -26,6 +25,7 @@ class _PhoneNoEntryState extends State<PhoneNoEntry> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SafeArea(
@@ -160,26 +160,26 @@ class _PhoneNoEntryState extends State<PhoneNoEntry> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      fixedSize: const Size(200, 20),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      backgroundColor: Colors.blueAccent,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text(
-                      "Sign in With Email",
-                      style: TextStyle(
-                        fontSize: 17,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                  // ElevatedButton(
+                  //   style: ElevatedButton.styleFrom(
+                  //     fixedSize: const Size(200, 20),
+                  //     shape: RoundedRectangleBorder(
+                  //       borderRadius: BorderRadius.circular(10),
+                  //     ),
+                  //     backgroundColor: Colors.blueAccent,
+                  //   ),
+                  //   onPressed: () {
+                  //     Navigator.pop(context);
+                  //   },
+                  //   child: const Text(
+                  //     "Sign in With Email",
+                  //     style: TextStyle(
+                  //       fontSize: 17,
+                  //       color: Colors.white,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  // ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -203,7 +203,7 @@ class _PhoneNoEntryState extends State<PhoneNoEntry> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const RegisterScreen(),
+                              builder: (context) => const PhoneRegistration(),
                             ),
                           );
                         },
