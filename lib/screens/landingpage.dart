@@ -1,22 +1,25 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_details/models/card.dart';
 import 'package:flutter_details/models/error.dart';
 import 'package:flutter_details/services/auth_service.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
-class LandingPage extends StatefulWidget {
-  const LandingPage({super.key});
+class LandingPage extends ConsumerStatefulWidget {
+  final String name;
+  const LandingPage(this.name, {super.key});
 
   @override
-  State<LandingPage> createState() => _LandingPageState();
+  ConsumerState<LandingPage> createState() => _LandingPageState();
 }
 
-class _LandingPageState extends State<LandingPage> {
+class _LandingPageState extends ConsumerState<LandingPage> {
   Timer? timer;
   StreamController<List<dynamic>> dataStreamController =
       StreamController<List<dynamic>>();
@@ -34,6 +37,7 @@ class _LandingPageState extends State<LandingPage> {
     _updateTime();
     _updateGreeting();
     fetchData(); // Initial data fetch
+
     // Set up a periodic timer to fetch data every x seconds
     timer = Timer.periodic(const Duration(seconds: 10), (timer) {
       fetchData();
@@ -94,8 +98,6 @@ class _LandingPageState extends State<LandingPage> {
 
     return greetingText;
   }
-
-  
 
   Future<void> fetchData() async {
     String formatUnixTimestampToAMPM(double unixTimestamp) {
@@ -268,9 +270,9 @@ class _LandingPageState extends State<LandingPage> {
                             ],
                           ),
                           const Gap(5),
-                          const Text(
-                            "Mr. Tangim Haque",
-                            style: TextStyle(
+                           Text(
+                            widget.name,
+                            style: const TextStyle(
                               fontFamily: 'Lato',
                               fontWeight: FontWeight.bold,
                               fontSize: 22,

@@ -3,19 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_details/screens/landingpage.dart';
 import 'package:flutter_details/screens/statistic.dart';
 
-class Bottombar extends StatefulWidget {
-  const Bottombar({super.key});
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class Bottombar extends ConsumerStatefulWidget {
+  final String name;
+  const Bottombar(this.name, {super.key});
 
   @override
-  State<Bottombar> createState() => _BottombarState();
+  ConsumerState<Bottombar> createState() => _BottombarState();
 }
 
-class _BottombarState extends State<Bottombar> {
+class _BottombarState extends ConsumerState<Bottombar> {
   int _selectedIndex = 0;
-  static final List<Widget> _widgetOptions = <Widget>[
-    const LandingPage(),
-    const Statistic(),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -24,7 +23,17 @@ class _BottombarState extends State<Bottombar> {
   }
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final List<Widget> _widgetOptions = <Widget>[
+       LandingPage(widget.name),
+      const Statistic(),
+    ];
+
     return Scaffold(
       // extendBody: true,
       // extendBodyBehindAppBar: true,

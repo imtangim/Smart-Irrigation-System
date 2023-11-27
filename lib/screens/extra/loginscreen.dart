@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_details/main.dart';
+
 import 'package:flutter_details/screens/bottombar.dart';
 import 'package:flutter_details/screens/extra/registerscreen.dart';
 import 'package:flutter_details/services/auth_service.dart';
@@ -18,8 +20,32 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool _validmail = true;
   bool _showPassword = false;
+  String name = "";
   TextEditingController emailControler = TextEditingController();
   TextEditingController passwordControler = TextEditingController();
+
+  Future<void> fetchDataFromFirestore(String userUid) async {
+    try {
+      // Reference to a Firestore collection
+      CollectionReference usersCollection =
+          FirebaseFirestore.instance.collection('users');
+
+      // Query the collection and get a snapshot of documents
+      QuerySnapshot querySnapshot =
+          await usersCollection.where('uid', isEqualTo: userUid).get();
+
+      // Iterate through the documents and access their data
+      querySnapshot.docs.forEach((doc) {
+        setState(() {
+          name = doc['firstname'] + " " + doc['lastname'];
+        });
+      });
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error fetching data from Firestore: $e');
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,12 +170,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       ),
                       backgroundColor: Colors.blueAccent,
                     ),
-                    onPressed: () async {
+                    onPressed: () {
                       if (emailControler.text != "" ||
                           passwordControler.text != "") {
                         FocusScope.of(context).unfocus();
                         // if (_key.currentState!.validate()) {
-                        signinuser();
+                        signinuser(ref);
                       }
                     },
                     child: const Text(
@@ -202,12 +228,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           side: MaterialStateProperty.all(BorderSide.none),
                         ),
                         onPressed: () {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => const RegisterScreen(),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const RegisterScreen(),
+                            ),
+                          );
                         },
                         child: const Text(
                           "Create an account",
@@ -243,42 +269,44 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     );
   }
 
-  void signinuser() async {
+  void signinuser(WidgetRef ref) async {
     try {
       dynamic result = await AuthService().signin(
         emailControler.text,
         passwordControler.text,
+        ref,
       );
 
       if (result != null) {
         passwordControler.clear();
         emailControler.clear();
         snackBar("Successful.");
-        ref.read(uidProvider.notifier).state = result.uid;
-        if (kDebugMode) {
-          print("The uid is : ${ref.watch(uidProvider)}");
-        }
-        // ignore: use_build_context_synchronously
-        Navigator.of(context).push(
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                const Bottombar(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-              const begin = Offset(1.0, 0.0); // Slide in from the right
-              const end = Offset.zero;
-              final tween = Tween(begin: begin, end: end);
-              final offsetAnimation = animation.drive(tween);
 
-              return SlideTransition(
-                position: offsetAnimation,
-                child: child,
-              );
-            },
-            transitionDuration: const Duration(milliseconds: 200),
-            fullscreenDialog: true,
-          ),
-        );
+        final userUid1 = ref.watch(userProvider);
+        fetchDataFromFirestore(userUid1.toString());
+        Future.delayed(const Duration(seconds: 2), () {
+          Navigator.of(context).push(
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  Bottombar(name),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                const begin = Offset(1.0, 0.0); // Slide in from the right
+                const end = Offset.zero;
+                final tween = Tween(begin: begin, end: end);
+                final offsetAnimation = animation.drive(tween);
+
+                return SlideTransition(
+                  position: offsetAnimation,
+                  child: child,
+                );
+              },
+              transitionDuration: const Duration(milliseconds: 200),
+              fullscreenDialog: true,
+            ),
+          );
+        });
+        // ignore: use_build_context_synchronously
       } else if (result == null) {
         passwordControler.clear();
         snackBar('Verify Email please.');

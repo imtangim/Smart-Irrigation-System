@@ -17,15 +17,24 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -43,41 +52,11 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyAcN-FSpBJbheE5SkQ59Zq78xHDVvUZFkk',
-    appId: '1:276190055161:web:44d0ae54bb03d41d343028',
-    messagingSenderId: '276190055161',
-    projectId: 'fir-detail-4103',
-    authDomain: 'fir-detail-4103.firebaseapp.com',
-    storageBucket: 'fir-detail-4103.appspot.com',
-    measurementId: 'G-3ST4WFD2XF',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBO8GqkMgLVtTWc22TbOarAZubsfOMyY6Q',
-    appId: '1:276190055161:android:90a78797a5aea46f343028',
-    messagingSenderId: '276190055161',
-    projectId: 'fir-detail-4103',
-    storageBucket: 'fir-detail-4103.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBbLWandLjz-p3dFZeeFGCciObn1EHPdNk',
-    appId: '1:276190055161:ios:2c7ad96c1f41993e343028',
-    messagingSenderId: '276190055161',
-    projectId: 'fir-detail-4103',
-    storageBucket: 'fir-detail-4103.appspot.com',
-    iosClientId: '276190055161-60bf54or9j4rq74p9ri05u8methf2smp.apps.googleusercontent.com',
-    iosBundleId: 'com.example.flutterDetails',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBbLWandLjz-p3dFZeeFGCciObn1EHPdNk',
-    appId: '1:276190055161:ios:55ee758feedc1ed3343028',
-    messagingSenderId: '276190055161',
-    projectId: 'fir-detail-4103',
-    storageBucket: 'fir-detail-4103.appspot.com',
-    iosClientId: '276190055161-lu06vsqgbhauk9atujiim40eb6ijhkqg.apps.googleusercontent.com',
-    iosBundleId: 'com.example.flutterDetails.RunnerTests',
+    apiKey: 'AIzaSyDtp9yQwFejGroHq8LeyG3UBIgi2Qd7eFQ',
+    appId: '1:385568151472:android:ff7fa9c072d52e3676a875',
+    messagingSenderId: '385568151472',
+    projectId: 'smart-irrigation-4733a',
+    storageBucket: 'smart-irrigation-4733a.appspot.com',
   );
 }

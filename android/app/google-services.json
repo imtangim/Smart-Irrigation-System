@@ -1,36 +1,26 @@
 {
   "project_info": {
-    "project_number": "276190055161",
-    "project_id": "fir-detail-4103",
-    "storage_bucket": "fir-detail-4103.appspot.com"
+    "project_number": "385568151472",
+    "project_id": "smart-irrigation-4733a",
+    "storage_bucket": "smart-irrigation-4733a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:276190055161:android:90a78797a5aea46f343028",
+        "mobilesdk_app_id": "1:385568151472:android:ff7fa9c072d52e3676a875",
         "android_client_info": {
           "package_name": "com.example.flutter_details"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "276190055161-73irm5fu45uqtctds3t0r3i5fpsfrmai.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBO8GqkMgLVtTWc22TbOarAZubsfOMyY6Q"
+          "current_key": "AIzaSyDtp9yQwFejGroHq8LeyG3UBIgi2Qd7eFQ"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "276190055161-73irm5fu45uqtctds3t0r3i5fpsfrmai.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

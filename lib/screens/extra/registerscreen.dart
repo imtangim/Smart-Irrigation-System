@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_details/screens/extra/loginscreen.dart';
 
 import 'package:flutter_details/services/auth_service.dart';
 import 'package:gap/gap.dart';
@@ -53,8 +54,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
         for (var i = 0; i < apiData["data"].length; i++) {
           if (kDebugMode) {
-            if (kDebugMode) {
-          }
+            if (kDebugMode) {}
             print(apiData["data"][i]["division"]);
           }
           divisionDropdown.add(apiData["data"][i]["division"]);
@@ -437,18 +437,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       Object? result = await AuthService().register(
                         emailControler.text,
                         passwordControler.text,
+                        selectedDivision,
+                        selectedDistrict,
+                        firstName.text,
+                        lastName.text,
                       );
                       if (result != null) {
                         conformPasswordcontroler.clear();
                         passwordControler.clear();
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => EmailVerification(
-                        //         mail: emailControler.text,
-                        //         durationInMinutes: 2),
-                        //   ),
-                        // );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginScreen(),
+                          ),
+                        );
                       }
                     } on FirebaseAuthException catch (e) {
                       if (e.code == 'email-already-in-use') {
@@ -462,13 +464,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   onTap: () {
                                     emailControler.clear();
                                     passwordControler.clear();
-                                    // Navigator.pop(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //     builder: (context) =>
-                                    //         const LoginScreen(),
-                                    //   ),
-                                    // );
+                                    Navigator.pop(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const LoginScreen(),
+                                      ),
+                                    );
                                   },
                                   child: const Text(
                                     "Login ->",
@@ -526,12 +528,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         conformPasswordcontroler.clear();
                         passwordControler.clear();
                         emailControler.clear();
-                        // Navigator.pop(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => const LoginScreen(),
-                        //   ),
-                        // );
+                        Navigator.pop(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const LoginScreen(),
+                          ),
+                        );
                       },
                       child: const Text(
                         "Login",

@@ -1,18 +1,21 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_details/screens/extra/loginscreen.dart';
+import 'package:flutter_details/services/auth_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'screens/bottombar.dart';
-import 'screens/landingpage.dart';
-import 'screens/login.dart';
+import 'package:provider/provider.dart';
 
-final uidProvider = StateProvider<String?>((ref) => null);
+final userUidProvider = StateProvider<String?>((ref) => null);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -23,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(useMaterial3: true),
-      home: Bottombar(),
+      home: const LoginScreen(),
     );
   }
 }
